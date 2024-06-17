@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Component/Header';
 import Footter from '../Component/Footter';
 import axios from 'axios';
-import { Card, List, Select } from 'antd';
-
+import { Card, List, Select,Input } from 'antd';
+import debounce from 'lodash/debounce';
 // Function to format currency
 function formatCurrency(price) {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
 }
 
+
 const { Option } = Select;
 
 function Drink() {
   const [drink, setDrink] = useState([]);
-
   const [filteredDrink, setFilteredDrink] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+
   // Function to fetch drink data
   const getDrink = async () => {
     try {
@@ -28,24 +28,6 @@ function Drink() {
       console.error('Error fetching drink data:', error);
     }
   };
-  const filterDrink = () => {
-    let filtered = drink;
-
-    // Filter by category
-    if (selectedCategory !== '') {
-      filtered = filtered.filter(item => item.tenLoai === selectedCategory);
-    }
-
-    // Filter by search query (case insensitive)
-    if (searchQuery !== '') {
-      const normalizedQuery = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(item =>
-        item.tenSp.toLowerCase().includes(normalizedQuery)
-      );
-    }
-
-    setFilteredDrink(filtered);
-  };
 
   // Function to extract unique categories from drink data
   const extractCategories = () => {
@@ -54,9 +36,14 @@ function Drink() {
   };
 
   // Function to filter drink based on selected category
-  const handleSearchChange = (value) => {
-    setSearchQuery(value);
-    filterDrink();
+  const filterDrink = (category) => {
+    if (category === '') {
+      setFilteredDrink(drink);
+    } else {
+      const filtered = drink.filter(item => item.tenLoai === category);
+      setFilteredDrink(filtered);
+    }
+    setSelectedCategory(category);
   };
 
   // useEffect hook to fetch data on component mount
@@ -82,19 +69,19 @@ function Drink() {
 
         {/* Category filter dropdown */}
         <div className='flex justify-center items-center'>
-          <Select
-            style={{ width: 200, marginBottom: 16 }}
-            showSearch
-            onSearch={handleSearchChange}
-            placeholder="Chọn loại sản phẩm"
-            onChange={filterDrink}
-            value={selectedCategory}
-          >
-            <Option value="">Tất cả</Option>
-            {categories.map((category, index) => (
-              <Option key={index} value={category}>{category}</Option>
-            ))}
-          </Select>
+     
+        {/* Category filter dropdown */}
+        <Select
+          style={{ width: 200, marginBottom: 16 }}
+          placeholder="Chọn loại sản phẩm"
+          onChange={filterDrink}
+          value={selectedCategory}
+        >
+          <Option value="">Tất cả</Option>
+          {categories.map((category, index) => (
+            <Option key={index} value={category}>{category}</Option>
+          ))}
+        </Select>
         </div>
         {/* Render filtered products */}
         <div className='flex w-full px-5 justify-center items-center'>
@@ -109,12 +96,12 @@ function Drink() {
               xxl: 4, // 4 columns on screens equal to or greater than 1600px
 
             }}
+            className='w-full'
             dataSource={filteredDrink}
             renderItem={(item) => (
-              <List.Item>
-
-
-                <div class="relative flex w-80 mt-[25px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+              <List.Item className='h-96'>
+                <div className='flex justify-center items-center w-auto h-auto'>
+                <div class="relative flex w-80   mt-[25px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                   <div class="relative mx-4 -mt-6 h-40  overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg 
   shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600">
                   </div>
@@ -131,6 +118,7 @@ function Drink() {
                       Đặt hàng
                     </button>
                   </div>
+                </div>
                 </div>
               </List.Item>
             )}
