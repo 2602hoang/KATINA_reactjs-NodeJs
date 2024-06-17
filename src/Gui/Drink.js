@@ -97,8 +97,17 @@ function Drink() {
         </Select>
         </div>
         {/* Render filtered products */}
+        <div className='flex w-full px-5 justify-center items-center'>
         <List
-          grid={{ gutter: 80, column: 4 }}
+          grid={{ gutter: 80, 
+            xs: 2,  // 1 column on screens smaller than 576px
+            sm: 3,  // 2 columns on screens equal to or greater than 576px
+            md: 4,  // 4 columns on screens equal to or greater than 768px
+            lg: 4,  // 4 columns on screens equal to or greater than 992px
+            xl: 4,  // 4 columns on screens equal to or greater than 1200px
+            xxl: 4, // 4 columns on screens equal to or greater than 1600px
+
+          }}
           dataSource={filteredDrink}
           renderItem={(item) => (
             <List.Item>
@@ -109,6 +118,7 @@ function Drink() {
             </List.Item>
           )}
         />
+        </div>
       </div>
       <Footter />
     </div>
