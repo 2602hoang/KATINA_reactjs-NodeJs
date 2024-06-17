@@ -30,13 +30,13 @@ function Header() {
                     <li className='my-5 md:m-0'>
                         <a href='/' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Trang Chủ</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Nước Uống</a></li>
+                        <a href='/drink' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Nước Uống</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Món Ăn</a></li>
+                        <a href='/food' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Món Ăn</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Về Chúng Tôi</a></li>
+                        <a href='/about' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Về Chúng Tôi</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Liên Hệ</a></li>
+                        <a href='/contact' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Liên Hệ</a></li>
                 </ul>
                 
                 <div id='menu-button' className='absolute  top-5 right-5  md:hidden cursor-pointer z-50 flexd' onClick={toggleMenu}>
