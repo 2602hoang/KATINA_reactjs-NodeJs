@@ -13,7 +13,7 @@ const { Option } = Select;
 
 function Drink() {
   const [drink, setDrink] = useState([]);
-  
+
   const [filteredDrink, setFilteredDrink] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -82,42 +82,59 @@ function Drink() {
 
         {/* Category filter dropdown */}
         <div className='flex justify-center items-center'>
-        <Select
-          style={{ width: 200, marginBottom: 16 }}
-          showSearch
-          onSearch={handleSearchChange}
-          placeholder="Chọn loại sản phẩm"
-          onChange={filterDrink}
-          value={selectedCategory}
-        >
-          <Option value="">Tất cả</Option>
-          {categories.map((category, index) => (
-            <Option key={index} value={category}>{category}</Option>
-          ))}
-        </Select>
+          <Select
+            style={{ width: 200, marginBottom: 16 }}
+            showSearch
+            onSearch={handleSearchChange}
+            placeholder="Chọn loại sản phẩm"
+            onChange={filterDrink}
+            value={selectedCategory}
+          >
+            <Option value="">Tất cả</Option>
+            {categories.map((category, index) => (
+              <Option key={index} value={category}>{category}</Option>
+            ))}
+          </Select>
         </div>
         {/* Render filtered products */}
         <div className='flex w-full px-5 justify-center items-center'>
-        <List
-          grid={{ gutter: 80, 
-            xs: 2,  // 1 column on screens smaller than 576px
-            sm: 3,  // 2 columns on screens equal to or greater than 576px
-            md: 4,  // 4 columns on screens equal to or greater than 768px
-            lg: 4,  // 4 columns on screens equal to or greater than 992px
-            xl: 4,  // 4 columns on screens equal to or greater than 1200px
-            xxl: 4, // 4 columns on screens equal to or greater than 1600px
+          <List
+            grid={{
+              gutter: 80,
+              xs: 2,  // 1 column on screens smaller than 576px
+              sm: 3,  // 2 columns on screens equal to or greater than 576px
+              md: 4,  // 4 columns on screens equal to or greater than 768px
+              lg: 4,  // 4 columns on screens equal to or greater than 992px
+              xl: 4,  // 4 columns on screens equal to or greater than 1200px
+              xxl: 4, // 4 columns on screens equal to or greater than 1600px
 
-          }}
-          dataSource={filteredDrink}
-          renderItem={(item) => (
-            <List.Item>
-              <Card title={item.tenSp}>
-                <img src={item.hinh} alt={item.tenSp} /> {/* Ensure to provide alt text for accessibility */}
-                {formatCurrency(item.giaSp)} {/* Pass item.giaSp directly */}
-              </Card>
-            </List.Item>
-          )}
-        />
+            }}
+            dataSource={filteredDrink}
+            renderItem={(item) => (
+              <List.Item>
+
+
+                <div class="relative flex w-80 mt-[25px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                  <div class="relative mx-4 -mt-6 h-40  overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg 
+  shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600">
+                  </div>
+                  <div class="p-6">
+                    <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                      {formatCurrency(item.giaSp)}
+                    </h5>
+                    <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+                      {item.tenSp}
+                    </p>
+                  </div>
+                  <div class="p-6 pt-0">
+                    <button data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                      Đặt hàng
+                    </button>
+                  </div>
+                </div>
+              </List.Item>
+            )}
+          />
         </div>
       </div>
       <Footter />
