@@ -3,7 +3,8 @@ import Header from '../Component/Header';
 import Footter from '../Component/Footter';
 import axios from 'axios';
 import { Card, List, Select,Input } from 'antd';
-import debounce from 'lodash/debounce';
+import ly from "../asset/ly.png"
+import Aos from 'aos';
 // Function to format currency
 function formatCurrency(price) {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
@@ -49,6 +50,9 @@ function Drink() {
   // useEffect hook to fetch data on component mount
   useEffect(() => {
     getDrink();
+    Aos.init({
+      duration: 1000, // Adjust the duration to your preference
+    });
   }, []); // Empty dependency array ensures it runs only once on mount
 
   // useEffect hook to extract categories after drink state is updated
@@ -62,7 +66,7 @@ function Drink() {
   }, [drink]); // Run whenever drink state changes
 
   return (
-    <div style={{ backgroundColor: "#cfe887" }} className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>
+    <div style={{ backgroundColor: "#fdc323" }} className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>
       <Header />
       <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center'>
         <h1>Trà Sữa nhà làm</h1>
@@ -84,10 +88,10 @@ function Drink() {
         </Select>
         </div>
         {/* Render filtered products */}
-        <div className='flex w-full px-5 justify-center items-center'>
+        <div className=' h-auto px-1 justify-center items-center'>
           <List
             grid={{
-              gutter: 80,
+              gutter: 8,
               xs: 2,  // 1 column on screens smaller than 576px
               sm: 3,  // 2 columns on screens equal to or greater than 576px
               md: 4,  // 4 columns on screens equal to or greater than 768px
@@ -96,24 +100,35 @@ function Drink() {
               xxl: 4, // 4 columns on screens equal to or greater than 1600px
 
             }}
-            className='w-full'
+            
             dataSource={filteredDrink}
             renderItem={(item) => (
-              <List.Item className='h-96'>
-                <div className='flex justify-center items-center w-auto h-auto'>
-                <div class="relative flex w-80   mt-[25px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                  <div class="relative mx-4 -mt-6 h-40  overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg 
-  shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600">
+              <List.Item className='md:w-[300px] w-full h-auto md:h-[300px]
+               justify-center items-center'>
+                <div
+                data-aos="flip-up"
+                className='relative  justify-center md:w-[300px]
+                items-center w-[full]   md:h-[300px] h-[300px] mx-2 my-10 md:my-2'>
+                <div
+                
+                class="relative w-[full]  md:h-[300px] h-[350px]  mt-[25px] flex-col bg-[#6ce6ff]
+                 rounded-xl  border-2 border-white hover:bg-[#7ae284] hover:shadow-[black] hover:scale-105 shadow-2xl">
+                  <div 
+                  style={{ backgroundImage: `url(${ly})` ,backgroundSize:'100% 100%' ,backgroundrepeat:"no-repeat",     backgroundPosition: 'center',}}
+                  class="relative mx-4 -mt-6 h-40  overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg 
+                  shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600">
                   </div>
-                  <div class="p-6">
-                    <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                      {formatCurrency(item.giaSp)}
+                  <div class="p-2 text-center mb-2">
+                    <h5 class=" block text-black font-sans text-sm font-semibold leading-snug tracking-normal 
+                    text-blue-gray-900 antialiased">
+                       {item.tenSp}
                     </h5>
-                    <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
-                      {item.tenSp}
-                    </p>
+                    
                   </div>
-                  <div class="p-6 pt-0">
+                  <div class="p-2 pt-0 mt-7">
+                    <p class="block text-black font-black font-sans text-base  leading-relaxed text-inherit antialiased">
+                    Đơn Giá: {formatCurrency(item.giaSp)} 
+                    </p>
                     <button data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                       Đặt hàng
                     </button>

@@ -6,7 +6,7 @@ function About() {
   return (
     <div style={{
 
-        backgroundColor: "#cfe887",
+        backgroundColor: "#fdc323",
   
       }}
         className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>

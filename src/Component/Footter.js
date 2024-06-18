@@ -55,7 +55,7 @@ function Footter() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="bot-0 md:px-8  border-t-2 flex-col h-auto flex w-full justify-center items-center flex-wrap bg-secondary-bg-color p-0">
+    <div className="bot-0 md:px-8 bg-[#241f32] border-t-2 flex-col h-auto flex w-full justify-center items-center flex-wrap bg-secondary-bg-color p-0">
     
     <FloatButton.BackTop style={{ height: '60px', width: '60px' }} tooltip={<b>Back Top</b>} />
     <div className='flex p-6 md:flex-row flex-col w-full h-[auto] overflow-hidden justify-between'>
@@ -63,9 +63,9 @@ function Footter() {
       <div className='md:border-r-2  flex flex-col md:flex-row md:mt-0 mt-2 md:space-x-9 border-t-2 md:border-t-0 justify-center items-center'>
              
               <div className='  flex mt-2 flex-col justify-center items-center md:mb-12'>
-              <div className='flex flex-row mb-2 mt-4 space-x-2'>
-      <h3 className='text-transparent bg-clip-text 
-                 bg-gradient-to-br from-purple-900 via-pink-700 to-yellow-400 uppercase  font-black'>Liên hệ KATINA 👉 </h3>
+              <div className='flex flex-row mb-2 mt-4 space-x-3'>
+      <h3 className='text-transparent bg-clip-text mt-2
+                 bg-gradient-to-br from-purple-900 via-pink-700 to-yellow-400 uppercase  font-black'>Liên hệ 👉   </h3>
          <Popover trigger="hover" placement='bottom'  content={<b>Email</b>}>
             <Button
               id="link"
@@ -138,12 +138,12 @@ function Footter() {
         </form>
         
         <h1 className='text-transparent bg-clip-text font-bold
-                 bg-gradient-to-br from-purple-900 via-pink-700 to-yellow-400 mt-2'>🤝 Hãy đóng góp để cùng nhau phát triển🤝</h1>
+                 bg-gradient-to-br from-purple-900 via-pink-700 to-yellow-400 mt-2'> Hãy đóng góp để cùng nhau phát triển</h1>
         </div>
         <div className='flex mt-2 flex-col justify-center items-center'>
                 <img src={logo} className='w-auto h-44 rounded-full' />
                 <h3 className='text-transparent bg-clip-text font-bold
-                 bg-gradient-to-br from-purple-900 via-pink-700 to-yellow-400 text-xl text-center'>KATINA <br/> "Nâng Tầm Trà Sữa Nhà Làm" </h3>
+                 bg-gradient-to-br from-purple-900 via-pink-700 to-yellow-400  text-center'>KATINA <br/>Nâng Tầm Trà Sữa Nhà Làm</h3>
               </div>
       </div>
       
@@ -153,7 +153,7 @@ function Footter() {
       <div className='flex flex-col'>
         <h1 className='text-transparent bg-clip-text 
                  bg-gradient-to-br from-purple-900 via-pink-700 to-yellow-400 uppercase text-2xl font-black mb-2'>Địa chỉ</h1>
-      <h1 className=''>Địa chỉ quán:👉 
+      <h1 className=' text-white'>Địa chỉ quán:👉 
         <a target='_blank' className='hover:animate-ping' href='https://www.google.com/maps/place/Coffee+-+Milk+tea+-+%C4%82n+v%E1%BA%B7t+Katina/@10.1835764,104.9308006,17z/data=!3m1!4b1!4m6!3m5!1s0x31a7572c3c6c6d67:0x28d777cdfa0fdcbf!8m2!3d10.1835764!4d104.9333755!16s%2Fg%2F11mxc_qpsl?entry=ttu'>03 QL80, TT. Hòn Đất, Hòn Đất, Kiên Giang, Vietnam</a>
         </h1>
       <a href='https://www.google.com/maps/place/Coffee+-+Milk+tea+-+%C4%82n+v%E1%BA%B7t+Katina/@10.1835764,104.9308006,17z/data=!3m1!4b1!4m6!3m5!1s0x31a7572c3c6c6d67:0x28d777cdfa0fdcbf!8m2!3d10.1835764!4d104.9333755!16s%2Fg%2F11mxc_qpsl?entry=ttu'><img src={bando} className='w-auto h-52 rounded-3xl'/></a> 
@@ -172,7 +172,7 @@ function Footter() {
 
       </div>
     </div>
-    <p className="text-center text-base font-mono">Copyright &copy; 2024 by Vu Hoang  <span>Dev</span> | "All Rights Reserved"</p>
+    <p className="text-center text-white text-base font-mono">Copyright &copy; 2024 by Vu Hoang  <span>Dev</span> | "All Rights Reserved"</p>
     {/* <div className='flex mt-10 flexd items-center justify-center'>
                   <div className='flex h-auto'>
                       <span class="my-2  loader"></span>

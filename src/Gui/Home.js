@@ -8,6 +8,8 @@ import axios from 'axios'
 import { Avatar } from 'antd'
 import "aos/dist/aos.css"
 import Aos from 'aos';
+import tea from "../asset/tea.png"
+import khach from "../asset/khach.png"
 import { CommentOutlined, UserOutlined } from '@ant-design/icons'
 function Home() {
   const [comment, setComment] = useState('');
@@ -86,7 +88,7 @@ function Home() {
   return (
     <div style={{
 
-      backgroundColor: "#cfe887",
+      backgroundColor: "#fdc323",
 
     }}
       className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>
@@ -99,9 +101,11 @@ function Home() {
        
 
 
-        <div  data-aos="flip-left"
-     className='border-2 p-5 border-white rounded-3xl flex-col h-auto flex w-full overflow-hidden md:w-1/2 justify-center items-center '>
-          <h1 className='mt-5 font-mono uppercase font-semibold text-[#00785d] mb-5 text-center'>
+        <div
+       style={{ boxShadow: '0px 20px 30px -10px rgba(38, 57, 77, 1)' }}
+        data-aos="flip-left"
+     className='border-2 p-5 border-black bg-white rounded-3xl flex-col h-auto flex w-full overflow-hidden md:w-1/2 justify-center items-center '>
+          <h1 className='bg-[#cfe887] p-6 rounded-lg mt-5 font-mono uppercase font-semibold text-[#00785d] mb-5 text-center'>
             KATINA  Nâng Tầm Trải Nghiệm Trà Sữa Nhà Làm 🍵
             <hr />
           </h1>
@@ -121,11 +125,13 @@ function Home() {
      data-aos-anchor="#example-anchor"
      data-aos-offset="1000"
      data-aos-duration="1000" className='flex h-auto mt-5 flex-col md:w-1/2 w-11/12'>
-          <img src={logo} className='md:h-[500px] rounded-full w-full' />
+          <img src={tea}   className=' md:h-[500px] rounded-full w-full' />
         </div>
       </div>
 
-      <div data-aos="flip-down"  className='md:h-screen  snap-start  w-full flex justify-center items-center md:my-0 my-20 md:mt-0'>
+      <div 
+      
+      data-aos="flip-down"  className='md:h-screen  snap-start  w-full flex justify-center items-center md:my-0 my-20 md:mt-0'>
         <div class={`card  `}>
           <div
             class={`relative border-2 border-sky-400 shadow-2xl  w-[300px]   sm:w-[650px] group transition-all duration-700
@@ -183,17 +189,19 @@ function Home() {
       <div data-aos="fade-right"
      data-aos-offset="300"
      data-aos-easing="ease-in-sine"  className='flex flex-col md:w-1/2 w-full'>
-          <img src={logo} className='md:h-[500px] rounded-full w-full' />
+          <img src={khach} className='md:h-[500px] rounded-full w-full' />
         </div>
 
-        <div data-aos="fade-left"
+        <div
+         style={{ boxShadow: '0px 20px 30px -10px rgba(38, 57, 77, 1)' }}
+        data-aos="fade-left"
      data-aos-anchor="#example-anchor"
      data-aos-offset="1000"
      data-aos-duration="1000"
-     className='flex md:flex-row mt-5 flex-col md:w-1/2 w-full '>
+     className='flex md:flex-row mt-5 border-2 border-black flex-col md:w-1/2 w-full   rounded-lg '>
 
-          <div className='flex border-2 rounded-3xl border-white mx-2 flex-col'>
-            <h1 className='font-mono uppercase font-semibold text-[#00785d] mb-5 mt-5 text-center'>Bạn hãy để lại góp ý để xây dựng những sự phát triển của KATINA</h1>
+          <div className='flex bg-white rounded-lg  px-4 flex-col'>
+            <h1 className='font-mono bg-[#cfe887] rounded-lg uppercase font-semibold text-[#00785d] px-4 mb-5 mt-5 text-center'>Bạn hãy để lại góp ý để <br/>xây dựng những sự phát triển của KATINA</h1>
             <div id="commentWrapper" className='overflow-y-hidden hover:overflow-y-auto h-[500px]  w-full  mt-2 p-2 '>
 
 

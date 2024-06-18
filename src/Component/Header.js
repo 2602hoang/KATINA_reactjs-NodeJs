@@ -9,7 +9,7 @@ function Header() {
         setMenuVisible(!menuVisible);
     };
     return (
-        <div className='overflow-hidden justify-start flex fixed   flex-row bg-yellow-200 h-[60px] md:w-full z-50 w-full top-0 '>
+        <div className='overflow-hidden justify-start flex fixed   flex-row bg-[#00785d] h-[60px] md:w-full z-50 w-full top-0 '>
             <nav className='overflow-hidden justify-between items-center py-3 flex '>
             <div className='md:flex top-0 left-0  z-50  md:z-50  w-52 md:w-72 flex flex-row md:ml-10   '>
                     <a href='/' className='font-black flex  items-center gap-x-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500'>
