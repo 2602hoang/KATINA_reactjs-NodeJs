@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Header from '../Component/Header';
 import Footter from '../Component/Footter';
 import axios from 'axios';
@@ -6,10 +6,9 @@ import { Card, List, Select,Input } from 'antd';
 import ly from "../asset/ly.png"
 import Aos from 'aos';
 import Layout1 from '../layout/Layout1';
+import { CartContext, useCart } from '../Context/CartProvider';
+import { formatCurrency } from '../until/index';
 // Function to format currency
-function formatCurrency(price) {
-  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-}
 
 
 const { Option } = Select;
@@ -19,9 +18,10 @@ function Drink() {
   const [filteredDrink, setFilteredDrink] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [cart, setCart] = useState([]); // Add cart state
-  const addToCart = (item) => {
-    setCart([...cart, item]); // Add item to cart
+ 
+  const { addToCart } = useCart();
+  const handleAddToCart = (item) => {
+    addToCart(item);
   };
   // Function to fetch drink data
   const getDrink = async () => {
@@ -132,7 +132,7 @@ function Drink() {
                     <p class="block text-black font-black font-sans text-base  leading-relaxed text-inherit antialiased">
                     Đơn Giá: {formatCurrency(item.giaSp)} 
                     </p>
-                    <button onClick={() => addToCart(item)} data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                    <button onClick={() => handleAddToCart(item)} data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                       Đặt hàng
                     </button>
                   </div>

@@ -6,11 +6,15 @@ import a from "../asset/food.png"
 import { List, Select } from 'antd';
 import Aos from 'aos';
 import Layout1 from '../layout/Layout1';
+import { useCart } from '../Context/CartProvider';
+
+import { formatCurrency } from '../until/index';
 const { Option } = Select;
-function formatCurrency(price) {
-  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-}
 function Food() {
+  const { addToCart } = useCart();
+  const handleAddToCart = (item) => {
+    addToCart(item);
+  };
   const [food, setFood] = useState([]);
   const [filteredFood, setFilteredFood] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -21,7 +25,7 @@ function Food() {
     try {
       const response = await axios.get('http://localhost:8080/api/v1/food');
       setFood(response.data.data); // Assuming the structure of response.data contains 'data'
-      // console.log(response.data); // Optional: Log the entire response for debugging
+      console.log(response.data); // Optional: Log the entire response for debugging
     } catch (error) {
       console.error('Error fetching Food data:', error);
     }
@@ -63,7 +67,7 @@ function Food() {
   }, [food]); // Run whenever drink state changes
   return (
    <Layout1>
-        <Header />
+        
         <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center'>
         <h1>Trà Sữa nhà làm</h1>
 
@@ -115,15 +119,15 @@ function Food() {
                   </div>
                   <div class="p-2 text-center">
                     <h5 class="mb-2 block text-black font-sans text-sm font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                       {item.food}
+                       {item.tenSp}
                     </h5>
                     
                   </div>
                   <div class="p-2 pt-0">
                     <p class="block text-black font-black font-sans text-base  leading-relaxed text-inherit antialiased">
-                    Đơn Giá: {formatCurrency(item.giaSp1)} 
+                    Đơn Giá: {formatCurrency(item.giaSp)} 
                     </p>
-                    <button data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                    <button onClick={() => handleAddToCart(item)} data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                       Đặt hàng
                     </button>
                   </div>

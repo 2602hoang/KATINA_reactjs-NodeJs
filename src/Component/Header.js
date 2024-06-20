@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import logo from "../asset/logo.png"
-import { Badge, FloatButton, Modal } from 'antd';
-import { IdcardFilled, MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-function Header({ cart }) {
+import { Avatar, Badge, Button, FloatButton, List, Modal } from 'antd';
+import { CloseOutlined, DeleteFilled, IdcardFilled, MenuOutlined, MinusCircleFilled, PlusCircleFilled, ShoppingCartOutlined } from '@ant-design/icons';
+import { useCart } from '../Context/CartProvider';
+// import formatCurrency from '../Helper/formatCurrency';
+function Header({cart,formatCurrency}) {
+    // const  cart  = useCart();
+    const {  removeFromCart,clearCart,addToCart } = useCart();
     const [menuVisible, setMenuVisible] = useState(false);
     // const [cartVisible, setCartVisible] = useState(false);
     // const [cartItems, setCartItems] = useState([]);
@@ -22,6 +26,101 @@ function Header({ cart }) {
     const toggleMenu = () => {
         setMenuVisible(!menuVisible);
     };
+    // const removeFromCartID = (id_SP) => {
+    //     const newCart = cart.filter(item => item.id_SP !== id_SP);
+    //     setCart(newCart); // Assuming you have a setCart function in your CartProvider
+    // };
+    
+    const countItemsByIdSP = (id_SP) => {
+        let count = 0;
+        cart.forEach(item => {
+            if (item.id_SP === id_SP) {
+                count++;
+            }
+        });
+        return count;
+    };
+    const removeItemByName = (name) => {
+        const itemIndex = cart.findIndex(item => item.tenSp === name);
+        if (itemIndex !== -1) {
+            const itemToRemove = cart[itemIndex];
+            removeFromCart(itemToRemove);
+        }
+    };
+    const countItemsById = (id_food) => {
+        let count = 0;
+        cart.forEach(item => {
+            if (item.id_food === id_food) {
+                count++;
+            }
+        });
+        return count;
+    };
+    
+    function renderItem (item, index) {
+        // Kiểm tra xem sản phẩm này có được hiển thị tên hay không
+        const showName = index === cart.findIndex(cartItem => cartItem.id_SP === item.id_SP);
+       
+        
+        // const showTongtien = index === cart.findIndex(cartItem => cartItem.id_food === item.id_food);
+        const showName1 = index === cart.findIndex(cartItem => cartItem.id_food === item.id_food);
+        // console.log("1",showName1);
+        // console.log("0",showName);
+        return (
+            
+            <List.Item
+            
+            style={{ display: showName || showName1 ? 'block' : 'none' }}>
+                <List.Item.Meta
+               
+                    avatar={<Avatar/>}
+                    title={
+                        <div className=' flex justify-between items-start'>
+                            <div className='flex flex-col justify-start items-start'>
+                            <h1>Tên Món: {showName || showName1 ? item.tenSp : null}</h1>
+                            
+                            </div>
+                            <div className='flex  flex-col space-y-5 justify-end items-end'>
+                            <h1 className=''>
+                                Đơn Giá : {formatCurrency(item.giaSp)}
+                            </h1>
+                            <CloseOutlined />
+                            <div className='flex flex-row space-x-4'>
+                            <Button onClick={() =>{ 
+                                // console.log("2121",index);
+                                removeFromCart(item)
+                               
+                                   
+                               }} icon={<MinusCircleFilled/>}  type='text' />
+                             { item.maSp?   <h1 className='border-b-2'>SL: {countItemsByIdSP(item.id_SP)}</h1>
+                             :
+                         
+                            <h1 className='border-b-2'>SL: {countItemsById(item.id_food)}</h1>}
+                            <Button onClick={() => addToCart(item)} type='text' icon={<PlusCircleFilled/>}></Button>
+                           
+                            </div>
+                            {item.maSp?<h1 className='mt-5 '>TT: {formatCurrency(countItemsByIdSP(item.id_SP) * item.giaSp)}</h1>:
+                            <h1>TT: {formatCurrency(countItemsById(item.id_food) * item.giaSp)}</h1>
+                            }
+                            
+                            </div>
+                             {/* <h1>Tên Món:{showName1 ? item.id_food : null}</h1> */}
+                        </div>
+                        }
+                    description={
+                        <div className='flex justify-end items-end'>
+                            
+                            {/* <h1>Tổng tiền hóa đơn: {formatCurrency(cart.reduce((total, item) => total + item.giaSp, 0))}</h1> */}
+                            
+                        </div>
+                    }
+                />
+                
+            </List.Item>
+          
+        );
+    };
+
     return (
         <div className='overflow-hidden justify-start flex fixed   flex-row bg-[#00785d] h-[60px] md:w-full z-50 w-full top-0 '>
             <nav className='overflow-hidden justify-between items-center py-3 flex '>
@@ -52,7 +151,7 @@ function Header({ cart }) {
                     <li className='my-5 md:m-0'>
                         <a href='/contact' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Liên Hệ</a></li>
                 </ul>
-                <Badge count={ 4} className='absolute  top-5 right-16 cursor-pointer z-50'>
+                <Badge count={ cart.length} className='absolute  top-5 right-16 cursor-pointer z-50'>
                 <ShoppingCartOutlined onClick={showModal}  style={{ color: '#fff',fontSize:"30px" }} />
                 </Badge>
                 <div id='menu-button' className='absolute  top-5 right-5  md:hidden cursor-pointer z-50 flexd' onClick={toggleMenu}>
@@ -64,9 +163,11 @@ function Header({ cart }) {
 
             </nav>
             <Modal title={<div className='flex justify-center items-center gap-4'>
+                 
+
         <ShoppingCartOutlined style={{ color: 'black', fontSize: "25px" }} /> gio hang  </div>}
-        className='sticky overflow-hidden text-center  h-max  '
-        width={window.innerWidth >= 768 ? "80%" : "100%"}
+        className='justify-center items-center overflow-hidden text-center  h-screen '
+        width={window.innerWidth >= 768 ? "50%" : "100%"}
 
         open={open}
         onOk={handleOk}
@@ -79,9 +180,37 @@ function Header({ cart }) {
         cancelButtonProps={{
           disabled: true,
           hidden: true,
+
+
         }}>
-            </Modal>
+
+
+                <List
+                 className=' overflow-y-scroll  h-[90vh] '
+                header={<div className=' flex justify-start items-start  '> <DeleteFilled onClick={() => clearCart()} style={{color:'red',fontSize:"20px"}}/></div>}
+                footer={
+              
+                <div className='flex flex-col justify-end items-end'>
+                    <div classsName=' flex items-end justify-end'>
+                    <h1 >Tổng tiền hóa đơn: {formatCurrency(cart.reduce((total, item) => total + item.giaSp, 0))}</h1>
+                    </div>
+                  
+                   
+                 
+                 
+                  </div>   
+                }
+            //   itemLayout="horizontal"
+            //   dataSource={cart}
+              itemLayout="horizontal"
+              dataSource={cart}
+              renderItem={renderItem}
            
+           />
+
+            </Modal>
+
+          
 
         </div>
     )
