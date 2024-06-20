@@ -192,7 +192,7 @@ function Header({cart,formatCurrency}) {
               
                 <div className='flex flex-col justify-end items-end'>
                     <div classsName=' flex items-end justify-end'>
-                    <h1 >Tổng tiền hóa đơn: {formatCurrency(cart.reduce((total, item) => total + item.giaSp, 0))}</h1>
+                    { formatCurrency(cart.reduce((total, item) => total + item.giaSp, 0))>0?<h1 >Tổng tiền hóa đơn: {formatCurrency(cart.reduce((total, item) => total + item.giaSp, 0))}</h1>:<h1></h1>}
                     </div>
                   
                    
