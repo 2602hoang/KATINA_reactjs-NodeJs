@@ -1,22 +1,17 @@
 import React from 'react'
 import Header from '../Component/Header'
 import Footter from '../Component/Footter'
+import Layout1 from '../layout/Layout1'
 
 function About() {
   return (
-    <div style={{
-
-        backgroundColor: "#fdc323",
-  
-      }}
-        className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>
-        <Header />
+  <Layout1>
         <div className='h-screen w-full'>
 
         </div>
         <Footter/>
 
-    </div>
+  </Layout1>
   )
 }
 

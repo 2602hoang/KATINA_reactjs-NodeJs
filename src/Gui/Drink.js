@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Card, List, Select,Input } from 'antd';
 import ly from "../asset/ly.png"
 import Aos from 'aos';
+import Layout1 from '../layout/Layout1';
 // Function to format currency
 function formatCurrency(price) {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
@@ -18,11 +19,14 @@ function Drink() {
   const [filteredDrink, setFilteredDrink] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
-
+  const [cart, setCart] = useState([]); // Add cart state
+  const addToCart = (item) => {
+    setCart([...cart, item]); // Add item to cart
+  };
   // Function to fetch drink data
   const getDrink = async () => {
     try {
-      const response = await axios.get('http://localhost/PHP/api/api_v1/getSanpham.php');
+      const response = await axios.get('http://localhost:8080/api/v1/sanpham');
       setDrink(response.data.data); // Assuming the structure of response.data contains 'data'
       console.log(response.data); // Optional: Log the entire response for debugging
     } catch (error) {
@@ -66,8 +70,7 @@ function Drink() {
   }, [drink]); // Run whenever drink state changes
 
   return (
-    <div style={{ backgroundColor: "#fdc323" }} className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>
-      <Header />
+   <Layout1>
       <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center'>
         <h1>Trà Sữa nhà làm</h1>
 
@@ -129,7 +132,7 @@ function Drink() {
                     <p class="block text-black font-black font-sans text-base  leading-relaxed text-inherit antialiased">
                     Đơn Giá: {formatCurrency(item.giaSp)} 
                     </p>
-                    <button data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                    <button onClick={() => addToCart(item)} data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                       Đặt hàng
                     </button>
                   </div>
@@ -140,8 +143,7 @@ function Drink() {
           />
         </div>
       </div>
-      <Footter />
-    </div>
+   </Layout1>
   );
 }
 

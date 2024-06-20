@@ -1,10 +1,24 @@
 import React, { useState } from 'react'
 import logo from "../asset/logo.png"
-import { FloatButton } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
-function Header() {
+import { Badge, FloatButton, Modal } from 'antd';
+import { IdcardFilled, MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+function Header({ cart }) {
     const [menuVisible, setMenuVisible] = useState(false);
-
+    // const [cartVisible, setCartVisible] = useState(false);
+    // const [cartItems, setCartItems] = useState([]);
+    console.log(cart);
+    const [open, setOpen] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = (e) => {
+    console.log(e);
+    setOpen(false);
+  };
+  const handleCancel = (e) => {
+    console.log(e);
+    setOpen(false);
+  };
     const toggleMenu = () => {
         setMenuVisible(!menuVisible);
     };
@@ -17,7 +31,7 @@ function Header() {
                    Katina
                 </a>
             </div>
-                
+           
                 <ul id="menu" className={`
                 py-4
                 md:ml-96
@@ -38,7 +52,9 @@ function Header() {
                     <li className='my-5 md:m-0'>
                         <a href='/contact' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Liên Hệ</a></li>
                 </ul>
-                
+                <Badge count={ 4} className='absolute  top-5 right-16 cursor-pointer z-50'>
+                <ShoppingCartOutlined onClick={showModal}  style={{ color: '#fff',fontSize:"30px" }} />
+                </Badge>
                 <div id='menu-button' className='absolute  top-5 right-5  md:hidden cursor-pointer z-50 flexd' onClick={toggleMenu}>
 
                  
@@ -47,6 +63,26 @@ function Header() {
                 </div>
 
             </nav>
+            <Modal title={<div className='flex justify-center items-center gap-4'>
+        <ShoppingCartOutlined style={{ color: 'black', fontSize: "25px" }} /> gio hang  </div>}
+        className='sticky overflow-hidden text-center  h-max  '
+        width={window.innerWidth >= 768 ? "80%" : "100%"}
+
+        open={open}
+        onOk={handleOk}
+        onCancel={handleCancel}
+
+        okButtonProps={{
+          disabled: true,
+          hidden: true,
+        }}
+        cancelButtonProps={{
+          disabled: true,
+          hidden: true,
+        }}>
+            </Modal>
+           
+
         </div>
     )
 }

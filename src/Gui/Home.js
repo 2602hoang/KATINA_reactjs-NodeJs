@@ -11,6 +11,7 @@ import Aos from 'aos';
 import tea from "../asset/tea.png"
 import khach from "../asset/khach.png"
 import { CommentOutlined, UserOutlined } from '@ant-design/icons'
+import Layout1 from '../layout/Layout1'
 function Home() {
   const [comment, setComment] = useState('');
 
@@ -86,13 +87,7 @@ function Home() {
 
 
   return (
-    <div style={{
-
-      backgroundColor: "#fdc323",
-
-    }}
-      className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>
-      <Header />
+   <Layout1>
 
       <Panner />
 
@@ -218,8 +213,7 @@ function Home() {
         </div>
         
       </div>
-      <Footter />
-    </div>
+     </Layout1>
   )
 }
 

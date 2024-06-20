@@ -6,6 +6,7 @@ import axios from 'axios';
 import Aos from 'aos';
 import { CloseCircleOutlined, SendOutlined } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
+import Layout1 from '../layout/Layout1';
 
 function Contact() {
   
@@ -77,13 +78,7 @@ function Contact() {
       });
   };
   return (
-    <div style={{
-
-        backgroundColor: "#fdc323",
-  
-      }}
-        className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>
-        <Header />
+   <Layout1>
         <div className='min-h-screen h-auto w-full mt-[65px]'>
         <div data-aos="flip-left"
                 data-aos-easing="ease-out-cubic"
@@ -201,9 +196,7 @@ function Contact() {
           
 
         </div>
-        <Footter/>
-
-    </div>
+    </Layout1>
   )
 }
 
