@@ -23,7 +23,7 @@ function Food() {
   // Function to fetch drink data
   const getFood = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/food');
+      const response = await axios.get('https://api-mvc-sql-1.onrender.com/api/v1/food');
       setFood(response.data.data); // Assuming the structure of response.data contains 'data'
       console.log(response.data); // Optional: Log the entire response for debugging
     } catch (error) {
