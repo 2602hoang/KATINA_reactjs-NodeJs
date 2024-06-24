@@ -8,6 +8,7 @@ import Aos from 'aos';
 import Layout1 from '../layout/Layout1';
 import { CartContext, useCart } from '../Context/CartProvider';
 import { formatCurrency } from '../until/index';
+import { URL } from '../url/url';
 // Function to format currency
 
 
@@ -26,7 +27,7 @@ function Drink() {
   // Function to fetch drink data
   const getDrink = async () => {
     try {
-      const response = await axios.get('https://api-mvc-sql-1.onrender.com/api/v1/sanpham');
+      const response = await axios.get(`${URL}/api/v1/sanpham`);
       setDrink(response.data.data); // Assuming the structure of response.data contains 'data'
       console.log(response.data); // Optional: Log the entire response for debugging
     } catch (error) {
@@ -133,7 +134,7 @@ function Drink() {
                     Đơn Giá: {formatCurrency(item.giaSp)} 
                     </p>
                     <button onClick={() => handleAddToCart(item)} data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                      Đặt hàng
+                      Thêm giỏ hàng
                     </button>
                   </div>
                 </div>

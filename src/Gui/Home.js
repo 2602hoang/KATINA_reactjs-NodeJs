@@ -91,7 +91,7 @@ function Home() {
 
       <Panner />
 
-      <div data-aos="fade-up" className='flex mt-10 flex-col md:flex-row md:h-screen md:w-4/5 w-full md:space-x-5 justify-center items-center'>
+      <div data-aos="fade-up" className='mx-2 flex mt-10 flex-col md:flex-row md:h-screen md:w-4/5 w-full md:space-x-5 justify-center items-center'>
 
        
 
@@ -99,7 +99,8 @@ function Home() {
         <div
        style={{ boxShadow: '0px 20px 30px -10px rgba(38, 57, 77, 1)' }}
         data-aos="flip-left"
-     className='border-2 p-5 border-black bg-white rounded-3xl flex-col h-auto flex w-full overflow-hidden md:w-1/2 justify-center items-center '>
+     className=' mx-2 border-2 p-5 border-black bg-white rounded-3xl flex-col h-auto flex w-11/12 overflow-hidden md:w-1/2 
+     justify-center items-center '>
           <h1 className='bg-[#cfe887] p-6 rounded-lg mt-5 font-mono uppercase font-semibold text-[#00785d] mb-5 text-center'>
             KATINA  Nâng Tầm Trải Nghiệm Trà Sữa Nhà Làm 🍵
             <hr />
@@ -180,10 +181,10 @@ function Home() {
 
       </div>
 
-      <div data-aos="fade-up" className='md:h-screen flex flex-col md:flex-row w-full md:w-4/5 overflow-hidden md:space-x-5 justify-center items-center'>
+      <div data-aos="fade-up" className=' mx-2 md:h-screen flex flex-col md:flex-row w-full md:w-4/5 overflow-hidden md:space-x-5 justify-center items-center'>
       <div data-aos="fade-right"
      data-aos-offset="300"
-     data-aos-easing="ease-in-sine"  className='flex flex-col md:w-1/2 w-full'>
+     data-aos-easing="ease-in-sine"  className='flex  px-2 flex-col md:w-1/2 w-full'>
           <img src={khach} className='md:h-[500px] rounded-full w-full' />
         </div>
 
@@ -193,7 +194,7 @@ function Home() {
      data-aos-anchor="#example-anchor"
      data-aos-offset="1000"
      data-aos-duration="1000"
-     className='flex md:flex-row mt-5 border-2 border-black flex-col md:w-1/2 w-full   rounded-lg '>
+     className='flex md:flex-row mt-5 mb-5 border-2 border-black flex-col md:w-1/2 w-11/12    rounded-lg '>
 
           <div className='flex bg-white rounded-lg  px-4 flex-col'>
             <h1 className='font-mono bg-[#cfe887] rounded-lg uppercase font-semibold text-[#00785d] px-4 mb-5 mt-5 text-center'>Bạn hãy để lại góp ý để <br/>xây dựng những sự phát triển của KATINA</h1>

@@ -7,6 +7,7 @@ import { List, Select } from 'antd';
 import Aos from 'aos';
 import Layout1 from '../layout/Layout1';
 import { useCart } from '../Context/CartProvider';
+import { URL } from '../url/url';
 
 import { formatCurrency } from '../until/index';
 const { Option } = Select;
@@ -23,9 +24,9 @@ function Food() {
   // Function to fetch drink data
   const getFood = async () => {
     try {
-      const response = await axios.get('https://api-mvc-sql-1.onrender.com/api/v1/food');
+      const response = await axios.get(`${URL}/api/v1/food`);
       setFood(response.data.data); // Assuming the structure of response.data contains 'data'
-      console.log(response.data); // Optional: Log the entire response for debugging
+      console.log("ok",`${URL}/api/v1/food`); // Optional: Log the entire response for debugging
     } catch (error) {
       console.error('Error fetching Food data:', error);
     }
@@ -69,7 +70,7 @@ function Food() {
    <Layout1>
         
         <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center'>
-        <h1>Trà Sữa nhà làm</h1>
+        <h1>Ăn vặt nhà làm</h1>
 
         {/* Category filter dropdown */}
         <div className='flex justify-center items-center'>
@@ -128,7 +129,7 @@ function Food() {
                     Đơn Giá: {formatCurrency(item.giaSp)} 
                     </p>
                     <button onClick={() => handleAddToCart(item)} data-ripple-light="true" type="button" class="select-none rounded-lg  bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                      Đặt hàng
+                    Thêm giỏ hàng
                     </button>
                   </div>
                 </div>
