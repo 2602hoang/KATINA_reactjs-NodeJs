@@ -128,7 +128,7 @@ function Home() {
       <div 
       
       data-aos="flip-down"  className='md:h-screen  snap-start  w-full flex justify-center items-center md:my-0 my-20 md:mt-0'>
-        <div class={`card  `}>
+        <div class={`  `}>
           <div
             class={`relative border-2 border-sky-400 shadow-2xl  w-[300px]   sm:w-[650px] group transition-all duration-700
              aspect-video flex items-center justify-center`}

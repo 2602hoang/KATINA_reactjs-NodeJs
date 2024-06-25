@@ -5,7 +5,8 @@ import { CloseOutlined, DeleteFilled, IdcardFilled, MenuOutlined, MinusCircleFil
 import { useCart } from '../Context/CartProvider';
 import axios from 'axios';
 import TextArea from 'antd/es/input/TextArea';
-import { URL } from '../url/url';
+import {URL} from '../url/url';
+import {  useNavigate } from 'react-router-dom';
 // import formatCurrency from '../Helper/formatCurrency';
 function Header({ cart, formatCurrency }) {
     // const  cart  = useCart();
@@ -14,6 +15,7 @@ function Header({ cart, formatCurrency }) {
     const [open, setOpen] = useState(false);
     const [notes, setNotes] = useState({});
     const [orderDate, setOrderDate] = useState('');
+    const navigate = useNavigate();
     const [showTextAreaForItem, setShowTextAreaForItem] = useState(null);
     //     "orderItems": [
     //     {
@@ -32,12 +34,8 @@ function Header({ cart, formatCurrency }) {
     //   "note": "Đơn hàng cho khách hàng VIP",
     //   "status": true,
     //   "order_date": "2024-06-20T15:00:00Z"
-    console.log(cart);
-    const createOrders = async () => {
-        // const orderItems = {};
     
-        // Tạo mảng orderItems bên ngoài vòng lặp forEach
-        
+    const createOrders = async () => { 
         const orderItems = cart.map(item => ({
             id_food: item.id_food || null,
             id_SP: item.id_SP || null,
@@ -50,59 +48,30 @@ function Header({ cart, formatCurrency }) {
         const orderData = {
             orderItems,
             note: combinedNotes,
-            status: true,
+            status: false,
             order_date: new Date().toISOString(),
         };
     
         try {
-            // Bước 2: Gọi API để tạo đơn hàng
+          
             const response = await axios.post(`${URL}/api/v1/oder`, orderData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
             console.log('Order created:', response.data);
-            alert('Order created successfully!');
+            alert(`Order created successfully !` );
             clearCart();
+           
+            setOpen(false); // Close modal after successful order
+            navigate('/about', {orderItems:orderItems}); 
         } catch (error) {
             console.error('Error creating order:', error.response ? error.response.data : error.message);
             alert('Error creating order. Please check the server logs for more details.');
         }
     };
     
-    // const createOrders = async () => {
-    //     const orderItems = cart.map(item => ({
-    //         id_food: parseInt(item.id_food)? parseInt(item.id_food) : 23 ,
-    //         id_SP: parseInt(item.id_SP)? parseInt(item.id_SP) : 1,
-    //         qtyFood: item.id_food ? countItemsById(item.id_food) : 0,
-    //         qtySp: item.id_SP ? countItemsByIdSP(item.id_SP) : 0,
-    //         // note: notes[item.id_food || item.id_SP] || ''
-    //     })).filter(item => item.id_food !== null || item.id_Sp !== null);
-
-    //     const combinedNotes = Object.values(notes).join('. ');
-
-    //     const orderData = {
-    //         orderItems,
-    //         note: combinedNotes,
-    //         status: true,
-    //         order_date: new Date().toISOString(),
-
-    //     };
-
-    //     try {
-    //         const response = await axios.post('http://localhost:8080/api/v1/oder', orderData, {
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         });
-    //         console.log('Order created:', response.data);
-    //         alert('Order created successfully!');
-    //         clearCart();
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //         alert('Error creating order');
-    //     }
-    // };
+   
 
     const showModal = () => {
         setOpen(true);
@@ -146,16 +115,10 @@ function Header({ cart, formatCurrency }) {
         setNotes(prevNotes => ({ ...prevNotes, [id]: value }));
     };
     function renderItem(item, index) {
-        // Kiểm tra xem sản phẩm này có được hiển thị tên hay không
         const showName = index === cart.findIndex(cartItem => cartItem.id_SP === item.id_SP);
-
-
-        // const showTongtien = index === cart.findIndex(cartItem => cartItem.id_food === item.id_food);
         const showName1 = index === cart.findIndex(cartItem => cartItem.id_food === item.id_food);
-        // console.log("1",showName1);
-        // console.log("0",showName);
         return (
-
+           
             <List.Item
 
                 style={{ display: showName || showName1 ? 'block' : 'none' }}>
@@ -213,7 +176,7 @@ function Header({ cart, formatCurrency }) {
 
                                     </button>
 
-                                    {item.maSp ? <h1 className='border-b-2 text-black font-mono'>SL: {countItemsByIdSP(item.id_SP)}</h1>
+                                    {item.maSp ? <h1 className='border-b-2 text-black font-mono'> {countItemsByIdSP(item.id_SP)}</h1>
                                         :
 
                                         <h1 className='border-b-2 font-mono text-black'>SL: {countItemsById(item.id_food)}</h1>}
@@ -259,7 +222,7 @@ function Header({ cart, formatCurrency }) {
                 />
 
             </List.Item>
-
+           
         );
     };
 
@@ -289,7 +252,7 @@ function Header({ cart, formatCurrency }) {
                     <li className='my-5 md:m-0'>
                         <a href='/food' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Món Ăn</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/about' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Về Chúng Tôi</a></li>
+                        <a href='/about' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Đơn Hàng Đã Đặt</a></li>
                     <li className='my-5 md:m-0'>
                         <a href='/contact' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Liên Hệ</a></li>
                 </ul>
@@ -346,15 +309,21 @@ function Header({ cart, formatCurrency }) {
                                 <h1></h1>
                             )}
                             { cart.length > 0 ? (
+                                <div className='flex justify-end items-end mt-5'>
                                 <button
-                                onClick={createOrders}
-                                class="flex animate-bounce hover:animate-none items-center px-4 py-2 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 text-white font-extrabold text-lg rounded-full shadow-2xl hover:from-blue-600 hover:via-blue-700 hover:to-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-70 active:bg-blue-800 active:shadow-inner transform hover:scale-110 transition duration-500 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ml-4"
+                                onClick={()=>{
+                                    createOrders(); 
+                                } }
+                                class="flex animate-bounce hover:animate-none items-center px-4 py-2 bg-gradient-to-r 
+                                 from-blue-500 via-blue-600 to-blue-500 text-white font-extrabold text-lg rounded-full
+                                  shadow-2xl hover:from-blue-600 hover:via-blue-700 hover:to-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-70 active:bg-blue-800 active:shadow-inner transform hover:scale-110 transition duration-500 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ml-4"
                             ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                     <path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z" clip-rule="evenodd" />
                                 </svg>
 
                                 Đặt hàng
                             </button>
+                            </div>
                                 
                             ):
                             <h1></h1>}

@@ -71,7 +71,7 @@ function Drink() {
   }, [drink]); // Run whenever drink state changes
 
   return (
-   <Layout1>
+   <Layout1 >
       <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center'>
         <h1>Trà Sữa nhà làm</h1>
 
