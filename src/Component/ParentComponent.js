@@ -14,10 +14,16 @@ function ParentComponent({ selectedOrderId }) {
             .then((canvas) => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF('p', 'pt', 'a5');
-                const imgWidth = 210;
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                // Calculate dimensions to center the image on A5 page
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const imgWidth = 0.75 * pdfWidth; // Scale factor for the image width
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                const x = (pdfWidth - imgWidth) / 2;
+                const y = (pdfHeight - imgHeight) / 2;
+
+                pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
                 pdf.save(`HoaDon_${selectedOrderId}.pdf`);
             })
             .catch((error) => {

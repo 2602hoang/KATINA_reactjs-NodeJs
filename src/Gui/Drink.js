@@ -72,7 +72,7 @@ function Drink() {
 
   return (
    <Layout1 >
-      <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center'>
+      <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center my-5'>
         <h1>Trà Sữa nhà làm</h1>
 
         {/* Category filter dropdown */}

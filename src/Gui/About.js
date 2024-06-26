@@ -178,7 +178,7 @@ function About() {
 
 
           }}>
-          <div className='h-[90vh]'>
+          <div className='h-[auto] justify-center items-center'>
             <Listorder selectedOrderId={selectedOrderId} />
           </div>
         </Modal>

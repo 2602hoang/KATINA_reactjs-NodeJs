@@ -13,7 +13,7 @@ function Header({ cart, formatCurrency }) {
     const { removeFromCart, clearCart, addToCart } = useCart();
     const [menuVisible, setMenuVisible] = useState(false);
     const [open, setOpen] = useState(false);
-    const [notes, setNotes] = useState({});
+    const [notes, setNotes] = useState('');
     const [orderDate, setOrderDate] = useState('');
     const navigate = useNavigate();
     const [showTextAreaForItem, setShowTextAreaForItem] = useState(null);
@@ -43,7 +43,7 @@ function Header({ cart, formatCurrency }) {
             qtySp: item.id_SP ? countItemsByIdSP(item.id_SP)/countItemsByIdSP(item.id_SP) : 0,
         })).filter(item => item.id_food !== null || item.id_SP !== null);
     
-        const combinedNotes = Object.values(notes).join('. ');
+        const combinedNotes = notes;
     
         const orderData = {
             orderItems,
@@ -111,9 +111,7 @@ function Header({ cart, formatCurrency }) {
         return count;
     };
 
-    const handleNoteChange = (id, value) => {
-        setNotes(prevNotes => ({ ...prevNotes, [id]: value }));
-    };
+    
     function renderItem(item, index) {
         const showName = index === cart.findIndex(cartItem => cartItem.id_SP === item.id_SP);
         const showName1 = index === cart.findIndex(cartItem => cartItem.id_food === item.id_food);
@@ -129,30 +127,8 @@ function Header({ cart, formatCurrency }) {
                         <div className=' flex justify-between items-start '>
                             <div className='flex flex-col justify-start items-start'>
                                 <h1 className='text-red-700 font-mono font-bold '>Tên Món: {showName || showName1 ? item.tenSp : null}</h1>
-                                {/* <label 
-                                onClick={() => setShowTextAreaForItem(showTextAreaForItem === item.tenSp ? null : item.tenSp)}
-                                    >Ghi chú</label> */}
-                                {/* {showTextAreaForItem === item.tenSp && ( */}
-                                <TextArea
-                                    className='w-full justify-start mr-5'
-                                    placeholder="Ghi chú"
-                                    autoSize={{
-                                        minRows: 1,
-                                        maxRows: 5,
-                                    }}
-                                    value={notes[item.id_food || item.id_SP] || ''}
-                                    onChange={e => handleNoteChange(item.id_food || item.id_SP, e.target.value)}
-                                />
-                                {/* )} */}
-                                {/* <a onClick={handleLabelClick1}>đống</a> */}
-
-                            </div>
-                            <div className='flex  flex-col space-y-5 justify-end items-end'>
-                                <h1 className='text-black font-mono'>
-                                    Đơn Giá : {formatCurrency(item.giaSp)}
-                                </h1>
-                                {/* <CloseOutlined /> */}
-                                <div className='flex flex-row space-x-4'>
+                              
+                                <div className='flex flex-row space-x-4 justify-start items-start mr-auto w-full '>
                                     {/* <Button onClick={() => { removeFromCart(item)}} icon={<MinusCircleFilled />} type='link' /> */}
 
                                     <button
@@ -176,10 +152,10 @@ function Header({ cart, formatCurrency }) {
 
                                     </button>
 
-                                    {item.maSp ? <h1 className='border-b-2 text-black font-mono'> {countItemsByIdSP(item.id_SP)}</h1>
+                                    {item.maSp ? <h1 className='border-b-2 text-black font-mono'>SL: {countItemsByIdSP(item.id_SP)}</h1>
                                         :
 
-                                        <h1 className='border-b-2 font-mono text-black'>SL: {countItemsById(item.id_food)}</h1>}
+                                        <h1 className='border-b-2 font-mono text-black '>SL: {countItemsById(item.id_food)}</h1>}
                                     {/* <Button onClick={() => addToCart(item)} type='link' icon={<PlusCircleFilled />}></Button> */}
                                     <button
                                         onClick={() => addToCart(item)}
@@ -204,8 +180,15 @@ function Header({ cart, formatCurrency }) {
                                     </button>
 
                                 </div>
-                                {item.maSp ? <h1 className='mt-5 '>TT: {formatCurrency(countItemsByIdSP(item.id_SP) * item.giaSp)}</h1> :
-                                    <h1 className='font-mono text-black'>Thành Tiền: {formatCurrency(countItemsById(item.id_food) * item.giaSp)}</h1>
+
+                            </div>
+                            <div className='flex  flex-col space-y-9 justify-end items-end '>
+                                <h1 className='text-black font-mono '>
+                                    Đơn Giá : {formatCurrency(item.giaSp)}
+                                </h1>
+                                {/* <CloseOutlined /> */}
+                                {item.maSp ? <h1 className='font-mono text-black mt-24'>TT: {formatCurrency(countItemsByIdSP(item.id_SP) * item.giaSp)}</h1> :
+                                    <h1 className='font-mono text-black mt-24'>TT: {formatCurrency(countItemsById(item.id_food) * item.giaSp)}</h1>
                                 }
 
                             </div>
@@ -267,13 +250,13 @@ function Header({ cart, formatCurrency }) {
                 </div>
 
             </nav>
-            <Modal title={<div className='flex justify-center items-center gap-5'>
+            <Modal title={<div className='flex justify-center items-center gap-5 '>
 
 
                 <ShoppingCartOutlined style={{ color: 'black', fontSize: "25px" }} /> Giỏ Hàng  
                 </div>}
                 className='justify-center items-center  text-center  h-screen '
-                width={window.innerWidth >= 768 ? "50%" : "100%"}
+                width={window.innerWidth >= 768 ? "670px" : "100%"}
 
                 open={open}
                 onOk={handleOk}
@@ -292,7 +275,7 @@ function Header({ cart, formatCurrency }) {
 
 
                 <List
-                    className=' overflow-y-scroll  h-[90vh] '
+                    className='   h-auto w-[full] overflow-hidden'
                     header={<div className=' flex justify-start items-start hover:animate-bounce '>
                         <Tooltip title="Xóa giỏ hàng" trigger={"hover"}>
                             <DeleteFilled onClick={() => clearCart()} style={{ color: 'red', fontSize: "20px" }} />
@@ -301,20 +284,33 @@ function Header({ cart, formatCurrency }) {
                     footer={
 
 
-                        <div classsName=' flex items-end justify-end '>
+                        <div classsName='w-full flex-row  '>
+                           <div className='w-2/3 justify-end items-end  ml-auto'>
+                             <TextArea
+                                    className='w-full justify-start items-start mr-5'
+                                    placeholder="Ghi chú"
+                                    autoSize={{
+                                        minRows: 3,
+                                        maxRows: 5,
+                                    }}
+                                    value={notes}
+                                    onChange={notes => setNotes(notes.target.value)}
+                                />
+                            </div>
 
+                            <div className=' flex-col w-1/3 justify-end items-end ml-auto flex'>
                             {cart.reduce((total, item) => total + item.giaSp, 0) > 0 ? (
                                 <h1 className='justify-end items-end text-black font-bold text-end'> Tổng tiền hóa đơn: {formatCurrency(cart.reduce((total, item) => total + item.giaSp, 0))}</h1>
                             ) : (
                                 <h1></h1>
                             )}
                             { cart.length > 0 ? (
-                                <div className='flex justify-end items-end mt-5'>
+                               
                                 <button
                                 onClick={()=>{
                                     createOrders(); 
                                 } }
-                                class="flex animate-bounce hover:animate-none items-center px-4 py-2 bg-gradient-to-r 
+                                class="flex animate-bounce mt-5 hover:animate-none items-center px-4 py-2 bg-gradient-to-r 
                                  from-blue-500 via-blue-600 to-blue-500 text-white font-extrabold text-lg rounded-full
                                   shadow-2xl hover:from-blue-600 hover:via-blue-700 hover:to-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-70 active:bg-blue-800 active:shadow-inner transform hover:scale-110 transition duration-500 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed ml-4"
                             ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -323,10 +319,12 @@ function Header({ cart, formatCurrency }) {
 
                                 Đặt hàng
                             </button>
-                            </div>
+                          
                                 
                             ):
                             <h1></h1>}
+                           </div>
+
                            
                         </div>
 
