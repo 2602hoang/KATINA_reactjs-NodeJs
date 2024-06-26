@@ -112,9 +112,8 @@ function About() {
             Hóa đơn: ({item.id_order})<br />
             Thời gian:{formattedTimestamp(item.create_at)}
           </div>
-          <div className="card-subtitle">
-            {item.note ? `Ghi chú: ${item.note}` : 'Không có ghi chú'}
-
+          <div className={`card-subtitle`}>
+            <p className={` ${item.note ? 'text-red-500 font-black text-xl' : 'font-thin'}`}>{item.note ? 'Có ghi chú' : 'Không có ghi chú'}</p> 
           </div>
           <hr className="card-divider" />
           <div className="card-footer">
@@ -135,7 +134,7 @@ function About() {
 
     );
   }
-  
+
 
 
   return (
@@ -152,7 +151,7 @@ function About() {
         <Modal
 
           footer={<button
-            onClick={() => {finishOrder(selectedOrderId);}}
+            onClick={() => { finishOrder(selectedOrderId); }}
             class="w-28 h-12 text-white font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-lg hover:scale-105 duration-200 hover:drop-shadow-2xl hover:shadow-[#7dd3fc] hover:cursor-pointer"
           >
             Thanh Toán
@@ -161,12 +160,12 @@ function About() {
           onOk={handleOk}
           onCancel={handleCancel}
           title={<div className='flex row justify-center items-center space-x-4'>
-            
+
             <h1 calssName='text-center justify-center items-center'>Chi tiết đơn hàng {selectedOrderId}</h1>
 
-           
 
-            <ParentComponent selectedOrderId={selectedOrderId}/>
+
+            <ParentComponent selectedOrderId={selectedOrderId} />
           </div>}
           okButtonProps={{
             disabled: true,

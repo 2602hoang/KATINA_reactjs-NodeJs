@@ -72,7 +72,7 @@ function Listorder({ selectedOrderId }) {
             <div className='border border-gray-800 flex-row w-[380px] overflow-hidden 
              justify-center h-[auto] items-center p-1 m-4 bg-white '>
                 {idOrder && <p className='text-black font-mono'>ID Order: {idOrder}</p>}
-                {note && <p className='border-b-2 mb-2'>Ghi chú: {note}</p>}
+                {note && <p className='border-b-2 mb-2 w-full'>Ghi chú: {note}</p>}
                 {Object.keys(itemCountsSP).length > 0 && <p className='text-black font-mono text-center'>Món nước</p>}
                 {Object.keys(itemCountsSP).map((id, index) => (
                     

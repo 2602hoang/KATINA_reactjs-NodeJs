@@ -109,6 +109,8 @@ then set the desired styles for .card-img. */
   .card-subtitle {
     font-size: 14px;
     font-weight: 400;
+    
+    overflow: hidden;
     color: var(--font-color-sub);
   }
   

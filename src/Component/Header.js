@@ -124,7 +124,7 @@ function Header({ cart, formatCurrency }) {
 
                     avatar={<Avatar />}
                     title={
-                        <div className=' flex justify-between items-start '>
+                        <div className=' flex justify-between items-start h-min-screen '>
                             <div className='flex flex-col justify-start items-start'>
                                 <h1 className='text-red-700 font-mono font-bold '>Tên Món: {showName || showName1 ? item.tenSp : null}</h1>
                               
@@ -155,7 +155,7 @@ function Header({ cart, formatCurrency }) {
                                     {item.maSp ? <h1 className='border-b-2 text-black font-mono'>SL: {countItemsByIdSP(item.id_SP)}</h1>
                                         :
 
-                                        <h1 className='border-b-2 font-mono text-black '>SL: {countItemsById(item.id_food)}</h1>}
+                                        <h1 className='border-b-2  font-mono text-black '>SL: {countItemsById(item.id_food)}</h1>}
                                     {/* <Button onClick={() => addToCart(item)} type='link' icon={<PlusCircleFilled />}></Button> */}
                                     <button
                                         onClick={() => addToCart(item)}
@@ -192,14 +192,12 @@ function Header({ cart, formatCurrency }) {
                                 }
 
                             </div>
-                            {/* <h1>Tên Món:{showName1 ? item.id_food : null}</h1> */}
+                            
                         </div>
                     }
                     description={
                         <div className='flex justify-end items-end'>
-
-                            {/* <h1>Tổng tiền hóa đơn: {formatCurrency(cart.reduce((total, item) => total + item.giaSp, 0))}</h1> */}
-
+                                   
                         </div>
                     }
                 />
@@ -250,13 +248,14 @@ function Header({ cart, formatCurrency }) {
                 </div>
 
             </nav>
-            <Modal title={<div className='flex justify-center items-center gap-5 '>
+            <Modal title={<div className='flex  justify-center items-center gap-5 h-min-screen '>
 
 
                 <ShoppingCartOutlined style={{ color: 'black', fontSize: "25px" }} /> Giỏ Hàng  
                 </div>}
-                className='justify-center items-center  text-center  h-screen '
+                className='justify-center items-center   text-center  h-screen '
                 width={window.innerWidth >= 768 ? "670px" : "100%"}
+                // height={window.innerWidth >= 768 ? "min" : "100%"}
 
                 open={open}
                 onOk={handleOk}
@@ -275,7 +274,7 @@ function Header({ cart, formatCurrency }) {
 
 
                 <List
-                    className='   h-auto w-[full] overflow-hidden'
+                    className='  border-2 p-2 border-black border-dashed rounded-2xl h-auto w-[full] overflow-hidden h-min-screen'
                     header={<div className=' flex justify-start items-start hover:animate-bounce '>
                         <Tooltip title="Xóa giỏ hàng" trigger={"hover"}>
                             <DeleteFilled onClick={() => clearCart()} style={{ color: 'red', fontSize: "20px" }} />
@@ -285,7 +284,8 @@ function Header({ cart, formatCurrency }) {
 
 
                         <div classsName='w-full flex-row  '>
-                           <div className='w-2/3 justify-end items-end  ml-auto'>
+                            {cart.length > 0 ?
+                           <div className='md:w-2/3 justify-end items-end  ml-auto'>
                              <TextArea
                                     className='w-full justify-start items-start mr-5'
                                     placeholder="Ghi chú"
@@ -296,9 +296,9 @@ function Header({ cart, formatCurrency }) {
                                     value={notes}
                                     onChange={notes => setNotes(notes.target.value)}
                                 />
-                            </div>
+                            </div>:<></>}
 
-                            <div className=' flex-col w-1/3 justify-end items-end ml-auto flex'>
+                            <div className=' flex-col md:w-1/3 justify-end items-end ml-auto flex'>
                             {cart.reduce((total, item) => total + item.giaSp, 0) > 0 ? (
                                 <h1 className='justify-end items-end text-black font-bold text-end'> Tổng tiền hóa đơn: {formatCurrency(cart.reduce((total, item) => total + item.giaSp, 0))}</h1>
                             ) : (
