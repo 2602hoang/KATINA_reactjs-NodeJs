@@ -9,6 +9,7 @@ import Layout1 from '../layout/Layout1';
 import { CartContext, useCart } from '../Context/CartProvider';
 import { formatCurrency } from '../until/index';
 import { URL } from '../url/url';
+import logo from "../asset/logo.png";
 // Function to format currency
 
 
@@ -71,8 +72,11 @@ function Drink() {
   }, [drink]); // Run whenever drink state changes
 
   return (
-   <Layout1 >
-      <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center my-5'>
+    
+   <Layout1  >
+      <div
+     style={{backgroundImage:`url${logo}`}}
+      className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center my-5'>
         <h1>Trà Sữa nhà làm</h1>
 
         {/* Category filter dropdown */}

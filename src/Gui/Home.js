@@ -12,6 +12,7 @@ import tea from "../asset/tea.png"
 import khach from "../asset/khach.png"
 import { CommentOutlined, UserOutlined } from '@ant-design/icons'
 import Layout1 from '../layout/Layout1'
+import backgroud from "../asset/backgroud.png"
 function Home() {
   const [comment, setComment] = useState('');
 
@@ -126,7 +127,7 @@ function Home() {
       </div>
 
       <div 
-      
+      style={{backgroundImage:`url${backgroud}`,backgroundSize:"100% 100%"}}
       data-aos="flip-down"  className='md:h-screen  snap-start  w-full flex justify-center items-center md:my-0 my-20 md:mt-0'>
         <div class={`  `}>
           <div
@@ -134,7 +135,7 @@ function Home() {
              aspect-video flex items-center justify-center`}
           >
             <div
-              class={`transition-all flex flex-col items-center py-5 justify-start boder-2 duration-300 group-hover:duration-1000 bg-white w-full h-full absolute group-hover:-translate-y-16`}
+              class={`transition-all flex flex-col items-center py-5 justify-start boder-2 duration-300 group-hover:duration-1000 bg-sky-400 w-full h-full absolute group-hover:-translate-y-16`}
 
             >
               <p class="text-xl sm:text-2xl font-semibold text-gray-500 font-serif">
@@ -148,7 +149,7 @@ function Home() {
               </p>
               {/* <p class="font-sans text-[10px] text-gray-700 pt-5">HoangVu_Dev</p> */}
               <div class="group duration-500 hover:-skew-x-0 skew-x-6 hover:translate-x-2">
-                <div class="group-hover:duration-400 relative rounded-2xl  w-[auto] h-10 bg-white text-gray-50 flex flex-col justify-center
+                <div class="group-hover:duration-400 relative rounded-2xl  w-[auto] h-10 bg-sky-400 text-gray-50 flex flex-col justify-center
                    items-center gap-1 before:-skew-x-12  before:rounded-2xl  before:absolute before:content['']  before:bg-neutral-700
                     before:right-3 before:top-0 before:w-[auto] before:h-10 before:-z-10">
                   {/* <span class=" font-bold text-black">Hoang</span> */}
