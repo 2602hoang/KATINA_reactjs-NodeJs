@@ -208,10 +208,12 @@ function Header({ cart, formatCurrency }) {
     };
 
     return (
-        <div className='overflow-hidden justify-start flex fixed   flex-row bg-[#fdc323] h-[60px] md:w-full z-50 w-full top-0 '>
-            <nav className='overflow-hidden justify-between items-center py-3 flex '>
+        <div className='overflow-hidden justify-start flex fixed   flex-row bg-[#fdc323] 
+        h-[60px] md:w-full z-50 w-full top-0 '>
+            <nav className='overflow-hidden justify-between items-center py-3 flex w-4/5 '>
                 <div className='md:flex top-0 left-0  z-50  md:z-50  w-52 md:w-72 flex flex-row md:ml-10   '>
-                    <a href='/' className='font-black flex  items-center gap-x-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500'>
+                    <a href='/' className='font-black flex  items-center gap-x-2
+                     bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500'>
                         <img src={logo} className=' space-x-1 h-12 w-16 rounded-full' />
                         Katina
                     </a>
@@ -223,24 +225,38 @@ function Header({ cart, formatCurrency }) {
             flexd
             md:space-y-0
                bg-sky-300
-                fixed z-20 top-0 left-0 w-full h-full flex font-bold flex-col justify-center items-center  ${menuVisible ? 'min-h-full' : 'invisible'
+                fixed z-20 top-0 left-0 w-full h-full flex font-bold
+                 flex-col justify-center items-center  ${menuVisible ? 'min-h-full' : 'invisible'
                     } md:visible md:bg-transparent md:h-auto md:flex-row md:justify-between md:static
                     }`}>
                     <li className='my-5 md:m-0'>
-                        <a href='/' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Trang Chủ</a></li>
+                        <a href='/' className=' md:text-white hover:border-b-2 
+                        hover:animate-ping hover:border-red-500 hover:text-red-500 
+                        transition duration-500 ease-in'>Trang Chủ</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/drink' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Nước Uống</a></li>
+                        <a href='/drink' className=' md:text-white hover:border-b-2 
+                        hover:animate-ping hover:border-red-500 hover:text-red-500 
+                        transition duration-500 ease-in'>Nước Uống</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/food' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Món Ăn</a></li>
+                        <a href='/food' className=' md:text-white hover:border-b-2 
+                        hover:animate-ping hover:border-red-500 hover:text-red-500 
+                        transition duration-500 ease-in'>Món Ăn</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/about' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Đơn Hàng Đã Đặt</a></li>
+                        <a href='/about' className=' md:text-white hover:border-b-2 
+                        hover:animate-ping hover:border-red-500 hover:text-red-500 
+                        transition duration-500 ease-in'>Đơn Hàng Đã Đặt</a></li>
                     <li className='my-5 md:m-0'>
-                        <a href='/contact' className=' md:text-white hover:border-b-2 hover:animate-ping hover:border-red-500 hover:text-red-500 transition duration-500 ease-in'>Liên Hệ</a></li>
+                        <a href='/contact' className=' md:text-white hover:border-b-2 
+                        hover:animate-ping hover:border-red-500 hover:text-red-500 
+                        transition duration-500 ease-in'>Liên Hệ</a></li>
                 </ul>
-                <Badge count={cart.length} className='absolute  top-5 right-16 cursor-pointer z-50'>
-                    <ShoppingCartOutlined onClick={showModal} style={{ color: '#fff', fontSize: "30px" }} />
+                <Badge count={cart.length} className='absolute 
+                 top-5 right-16 cursor-pointer z-50'>
+                    <ShoppingCartOutlined onClick={showModal} 
+                    style={{ color: '#fff', fontSize: "30px" }} />
                 </Badge>
-                <div id='menu-button' className='absolute  top-5 right-5  md:hidden cursor-pointer z-50 flexd' onClick={toggleMenu}>
+                <div id='menu-button' className='absolute  top-5
+                 right-5  md:hidden cursor-pointer z-50 flexd' onClick={toggleMenu}>
 
 
                     <MenuOutlined style={{ color: 'black', fontSize: "20px" }} />

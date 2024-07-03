@@ -10,17 +10,17 @@ export default function Panner() {
   const images = [logo, h1, h2, h3, h4];
 
   return (
-    <div data-aos="fade-up" className='bg-black md:w-full w-full md:h-screen mt-[60px] h-[300px]'>
+    <div data-aos="fade-up" className='bg-black md:w-full w-full md:h-[90vh] mt-[60px] '>
       <Carousel arrows dots="true" autoplay speed={1500} autoplaySpeed={1500} effect="fade">
         {images.map((image, index) => (
-          <div key={index} className='flex justify-center items-center w-full md:h-screen'>
+          <div key={index} className='flex justify-center items-center w-full md:h-[90vh]'>
             <div
               style={{
                 backgroundImage: `url(${image})`,
-                backgroundSize:window.innerWidth >= 768? "100% 100vh":"100% 300px",
+                backgroundSize:window.innerWidth >= 768? "100% 90vh":"100% 300px",
                 backgroundrepeat:"no-repeat",
                 backgroundPosition: 'center',
-                height: window.innerWidth >= 768 ?"100vh":"300px",
+                height: window.innerWidth >= 768 ?"90vh":"300px",
                 width: window.innerWidth >= 768 ?"100%" :"100%",
               }}
               

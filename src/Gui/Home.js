@@ -89,9 +89,9 @@ function Home() {
 
   return (
    <Layout1>
-
+    
       <Panner />
-
+     
       <div data-aos="fade-up" className='mx-2 flex mt-10 flex-col md:flex-row md:h-screen md:w-4/5 w-full md:space-x-5 justify-center items-center'>
 
        

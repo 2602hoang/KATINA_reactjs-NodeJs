@@ -37,30 +37,30 @@ function Footter() {
   };
     const [time, setTime] = useState('');
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const daysOfWeek = [('Chủ Nhật'), ('Thứ Hai'), ('Thứ Ba'), ('Thứ Tư'), ('Thứ Năm'), ('Thứ Sáu'), ('Thứ Bảy')];
-      const dayOfWeek = daysOfWeek[now.getDay()];
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      const day = now.getDate().toString().padStart(2, '0');
-      const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because getMonth() returns zero-based month index
-      const year = now.getFullYear().toString();
-      const timeString = `Thời Gian ${hours}:${minutes}:${seconds}\n||\n\n\n\n\n\t\t${dayOfWeek},${day}/${month}/${year}`;
-      setTime(timeString);
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const now = new Date();
+  //     const daysOfWeek = [('Chủ Nhật'), ('Thứ Hai'), ('Thứ Ba'), ('Thứ Tư'), ('Thứ Năm'), ('Thứ Sáu'), ('Thứ Bảy')];
+  //     const dayOfWeek = daysOfWeek[now.getDay()];
+  //     const hours = now.getHours().toString().padStart(2, '0');
+  //     const minutes = now.getMinutes().toString().padStart(2, '0');
+  //     const seconds = now.getSeconds().toString().padStart(2, '0');
+  //     const day = now.getDate().toString().padStart(2, '0');
+  //     const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because getMonth() returns zero-based month index
+  //     const year = now.getFullYear().toString();
+  //     const timeString = `Thời Gian ${hours}:${minutes}:${seconds}\n||\n\n\n\n\n\t\t${dayOfWeek},${day}/${month}/${year}`;
+  //     setTime(timeString);
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
   return (
     <div className="bot-0 md:px-8 bg-[#241f32] border-t-2 flex-col h-auto flex w-full justify-center items-center flex-wrap bg-secondary-bg-color p-0">
     
     <FloatButton.BackTop style={{ height: '60px', width: '60px' }} tooltip={<b>Back Top</b>} />
     <div className='flex p-6 md:flex-row flex-col w-full h-[auto] overflow-hidden justify-between'>
 
-      <div className='md:border-r-2  flex flex-col md:flex-row md:mt-0 mt-2 md:space-x-9 border-t-2 md:border-t-0 justify-center items-center'>
+      <div className='md:border-r-2  flex flex-col md:flex-row md:w-1/2 w-full md:mt-0 mt-2 md:space-x-9 border-t-2 md:border-t-0 justify-center items-center'>
              
               <div className='  flex mt-2 flex-col justify-center items-center md:mb-12'>
               <div className='flex flex-row mb-2 mt-4 space-x-3'>
