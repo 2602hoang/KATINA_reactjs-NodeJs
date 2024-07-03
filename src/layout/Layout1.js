@@ -10,7 +10,8 @@ const Layout1 = ({ children }) => {
     
 // "
   return (
-    <div style={{ backgroundImage: `url${logo}`,backgroundSize:"100% 100%" }} className='overflow-hidden h-auto w-full flex flex-col justify-center items-center'>
+    <div style={{ backgroundImage: `url${logo}`,backgroundSize:"100% 100%" }} className='overflow-hidden 
+    h-auto w-full flex flex-col justify-center items-center'>
       <Header cart={cart} formatCurrency={formatCurrency}  />
       {children}
       <Footter />

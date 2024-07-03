@@ -69,7 +69,7 @@ function Food() {
   return (
    <Layout1>
         
-        <div className='min-h-screen h-auto w-full flex flex-col mt-[65px] text-center'>
+        <div className='min-h-screen  h-auto w-full flex flex-col mt-[65px] text-center'>
         <h1>Ăn vặt nhà làm</h1>
 
         {/* Category filter dropdown */}
@@ -89,10 +89,10 @@ function Food() {
         </Select>
         </div>
         {/* Render filtered products */}
-        <div className='  md:h-[auto] w-full px-1 md:px-1 justify-center items-center'>
+        <div className='  md:h-[auto] w-full px-1 md:px-auto justify-center items-center'>
           <List
             grid={{
-              gutter: 8,
+              // gutter: 16,
               xs: 2,  // 1 column on screens smaller than 576px
               sm: 2,  // 2 columns on screens equal to or greater than 576px
               md: 4,  // 4 columns on screens equal to or greater than 768px
@@ -104,12 +104,12 @@ function Food() {
             
             dataSource={filteredFood}
             renderItem={(item) => (
-              <List.Item className='md:w-[300px] w-full h-auto md:h-[300px]
+              <List.Item className=' w-full h-auto 
                justify-center items-center'>
                 <div
                 data-aos="flip-up"
-                className='relative justify-center md:w-[300px]
-                 items-center w-[full]  md:h-[300px] h-[300px] mx-2 my-5 md:my-2'>
+                className='relative justify-center
+                 items-center w-[full]  h-[300px] mx-2 my-5 md:my-2'>
 
                 <div class="relative flex w-[full]  md:h-[300px] h-[300px] mt-[25px] flex-col bg-[#ec6083]
                  rounded-xl border-2 border-white hover:bg-[#7ae284] hover:shadow-[black] hover:scale-105 shadow-2xl">

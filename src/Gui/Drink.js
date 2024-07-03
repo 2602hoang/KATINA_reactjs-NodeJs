@@ -99,7 +99,7 @@ function Drink() {
         <div className=' h-auto px-1 justify-center items-center'>
           <List
             grid={{
-              gutter: 8,
+              // gutter: 24,
               xs: 2,  // 1 column on screens smaller than 576px
               sm: 3,  // 2 columns on screens equal to or greater than 576px
               md: 4,  // 4 columns on screens equal to or greater than 768px
@@ -111,11 +111,11 @@ function Drink() {
             
             dataSource={filteredDrink}
             renderItem={(item) => (
-              <List.Item className='md:w-[300px] w-full h-auto md:h-[300px]
+              <List.Item className=' w-full h-auto md:h-[300px]
                justify-center items-center'>
                 <div
                 data-aos="flip-up"
-                className='relative  justify-center md:w-[300px]
+                className='relative  justify-center 
                 items-center w-[full]   md:h-[300px] h-[300px] mx-2 my-10 md:my-2'>
                 <div
                 
